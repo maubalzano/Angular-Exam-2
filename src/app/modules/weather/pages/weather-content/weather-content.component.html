@@ -1,0 +1,19 @@
+<div class="d-flex flex-column align-items-center">
+    <div class="d-flex align-items-center w-50">
+        <label for="city" class="me-2">City</label>
+        <input type="text" id="city" [formControl]="cityInput" class="form-control" (keypress.enter)="searchByCity()">
+        <button type="button" class="btn btn-primary" (click)="searchByCity()">Cerca</button>
+    </div>
+    
+    <div *ngIf="(cityWeather$ | async) as weather" class="p-3 my-4 w-50 rounded shadow-lg">
+        <div>
+            <h4>{{weather.city}}, {{weather.country}} - {{date | date:'dd MMMM yyyy':'it'}}</h4>
+            <div class="d-flex align-items-center">
+                <h5 class="mb-0">{{weather.temp}} °C, {{weather.description | titlecase}} </h5><img width="40px " src='https://openweathermap.org/img/wn/{{weather.icon}}@2x.png'>
+            </div>
+        </div>
+    
+    
+    </div>
+
+</div>
