@@ -13,12 +13,8 @@ export class WeatherService {
     private readonly http: HttpClient
   ) { }
 
-  // getCoordByCity(city: string){
-  //   const params = new HttpParams().set('q', city);
-  //   return this.http.get('https://nominatim.openstreetmap.org/search', { params })
-  // }
-
   getWeatherByCity(city: string): Observable<WeatherInfo>{
+
     const params = new HttpParams()
       .set('appId', environment.apiKey)
       .set('q', city)
@@ -26,7 +22,12 @@ export class WeatherService {
       .set('units', 'metric')
     return this.http.get<CityWeather>( `${environment.apiUrl}weather`, { params } )
        .pipe(
-         map( response => ({ city: response.name, country: response.sys.country, temp: Math.floor(response.main.temp), description: response.weather[0].description, icon: response.weather[0].icon })
+         map( response => ({ 
+          city: response.name, 
+          country: response.sys.country, 
+          temp: Math.floor(response.main.temp), 
+          description: response.weather[0].description, 
+          icon: response.weather[0].icon })
        ))
   }
 }
