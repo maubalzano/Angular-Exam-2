@@ -21,8 +21,9 @@ export class WeatherContentComponent implements OnInit {
   ) { }
 
   searchByCity(){
-    this.weatherService.getCoordByCity(this.cityInput.value).subscribe(console.log);
-    this.cityWeather$ = this.cityInput.valid ? this.weatherService.getWeatherByCity(this.cityInput.value) : this.cityWeather$;
+
+    this.cityWeather$ = this.cityInput.valid ? this.weatherService.getCoordByCity(this.cityInput.value) : this.cityWeather$;
+    
     this.date = new Date()
 
   }
